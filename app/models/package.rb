@@ -1,3 +1,3 @@
 class Package < ApplicationRecord
-    belongs_to :offers
+    belongs_to :job_offers
 end

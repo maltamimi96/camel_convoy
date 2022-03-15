@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @job_offer.title %>
+</p>
+
+<p>
+  <strong>Num packages:</strong>
+  <%= @job_offer.num_packages %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @job_offer.duration %>
+</p>
+
+<%= link_to 'Edit', edit_job_offer_path(@job_offer) %> |
+<%= link_to 'Back', job_offers_path %>

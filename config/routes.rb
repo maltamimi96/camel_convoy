@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :packages
+  resources :job_offers
   resources :drivers
   devise_for :users
   devise_for :views
