@@ -15,15 +15,17 @@
 
   <tbody>
     <% @drivers.each do |driver| %>
-      <tr>
-        <td><%= driver.user_id %></td>
-        <td><%= driver.vehicle %></td>
-        <td><%= driver.registration %></td>
-        <td><%= driver.insurance %></td>
-        <td><%= link_to 'Show', driver %></td>
-        <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
-        <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+     <%if driver.user == current_user%>
+        <tr>
+          <td><%= driver.user_id %></td>
+          <td><%= driver.vehicle %></td>
+          <td><%= driver.registration %></td>
+          <td><%= driver.insurance %></td>
+          <td><%= link_to 'Show', driver %></td>
+          <td><%= link_to 'Edit', edit_driver_path(driver) %></td>
+          <td><%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <%end%> 
     <% end %>
   </tbody>
 </table>

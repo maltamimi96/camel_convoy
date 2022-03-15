@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyText
+  total_packages: 1
+  Duration: 1.5
+
+two:
+  title: MyText
+  total_packages: 1
+  Duration: 1.5
