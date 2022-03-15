@@ -1,5 +1,7 @@
 class DriversController < ApplicationController
   before_action :set_driver, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  before_action :verify_user, only:[:edit,:update,:destroy]
 
   # GET /drivers or /drivers.json
   def index
@@ -12,17 +14,22 @@ class DriversController < ApplicationController
 
   # GET /drivers/new
   def new
-    @driver = Driver.new
+    @driver = current_user.driver.build
   end
 
   # GET /drivers/1/edit
   def edit
   end
 
+  def verify_user
+    @driver =  current_user.driver.find_by(id: params[:id])
+    redirect_to drivers_path, notice: "not Authorised"  if @driver.nil?
+  end
+
   # POST /drivers or /drivers.json
   def create
-    @driver = Driver.new(driver_params)
-
+    #@driver = Driver.new(driver_params)
+    @driver = current_user.driver.build(driver_params)
     respond_to do |format|
       if @driver.save
         format.html { redirect_to driver_url(@driver), notice: "Driver was successfully created." }
@@ -65,6 +72,6 @@ class DriversController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def driver_params
-      params.require(:driver).permit(:user_id, :vehicle, :registration, :insurance)
+      params.require(:driver).permit( :vehicle, :registration, :insurance,:user_id)
     end
 end

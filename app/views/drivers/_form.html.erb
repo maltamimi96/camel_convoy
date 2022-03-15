@@ -11,9 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="field">
     <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
+    <%= form.number_field :user_id,id: :driver_user_id,value:current_user.id,type: :hidden%>
   </div>
 
   <div class="field">
@@ -30,6 +30,9 @@
     <%= form.label :insurance %>
     <%= form.check_box :insurance %>
   </div>
+
+<%current_user.id%>
+
 
   <div class="actions">
     <%= form.submit %>
