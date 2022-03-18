@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Deliveries</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>By</th>
+      <th>Packages</th>
+      <th>Pay</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deliveries.each do |delivery| %>
+    
+      <tr>
+        <td><%= delivery.title %></td>
+        <td><%= delivery.deliver %></td>
+        <td><%= delivery.by %></td>
+        <td><%= delivery.packages %></td>
+        <td><%= delivery.pay %></td>
+        <td><%= link_to 'View Job', delivery %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
