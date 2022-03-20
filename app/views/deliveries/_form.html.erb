@@ -38,6 +38,18 @@
     <%= form.number_field :user_id,id: :delivery_user_id,value:current_user.id,type: :hidden%>
   </div>
 
+  <div class="field">
+
+
+
+  <%=form.label :picture%>
+  <%=form.file_field :picture,accept:'image/png,image/jpg,image/jpeg'%>
+
+
+  </div>
+
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
