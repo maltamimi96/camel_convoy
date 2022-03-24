@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :drivers
   resources :deliveries
   devise_for :users
   devise_for :views

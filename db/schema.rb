@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_21_131423) do
+ActiveRecord::Schema.define(version: 2022_03_24_081620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_deliveries", force: :cascade do |t|
+    t.bigint "delivery_id", null: false
+    t.bigint "driver_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_active_deliveries_on_delivery_id"
+    t.index ["driver_id"], name: "index_active_deliveries_on_driver_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -45,6 +54,7 @@ ActiveRecord::Schema.define(version: 2022_03_21_131423) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "title"
+    t.string "deliver"
     t.datetime "by"
     t.integer "packages"
     t.decimal "pay"
@@ -52,6 +62,15 @@ ActiveRecord::Schema.define(version: 2022_03_21_131423) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_deliveries_on_user_id"
+  end
+
+  create_table "drivers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "vehicle_type"
+    t.string "insurance"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_drivers_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,6 +97,9 @@ ActiveRecord::Schema.define(version: 2022_03_21_131423) do
     t.index ["reset_password_token"], name: "index_views_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_deliveries", "deliveries"
+  add_foreign_key "active_deliveries", "drivers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "drivers", "users"
 end
