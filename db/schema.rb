@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_20_101718) do
+ActiveRecord::Schema.define(version: 2022_03_21_131423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_101718) do
 
   create_table "deliveries", force: :cascade do |t|
     t.string "title"
-    t.string "deliver"
     t.datetime "by"
     t.integer "packages"
     t.decimal "pay"
@@ -53,40 +52,6 @@ ActiveRecord::Schema.define(version: 2022_03_20_101718) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_deliveries_on_user_id"
-  end
-
-  create_table "drivers", force: :cascade do |t|
-    t.string "vehicle"
-    t.string "registration"
-    t.boolean "insurance"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_drivers_on_user_id"
-  end
-
-  create_table "job_offers", force: :cascade do |t|
-    t.text "title"
-    t.integer "num_packages"
-    t.integer "duration"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "offers", force: :cascade do |t|
-    t.text "title"
-    t.integer "total_packages"
-    t.float "Duration"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "packages", force: :cascade do |t|
-    t.text "details"
-    t.decimal "weight"
-    t.text "special_instructions"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

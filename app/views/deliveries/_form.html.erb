@@ -28,6 +28,8 @@
     <%= form.number_field :packages %>
   </div>
 
+
+
   <div class="field">
     <%= form.label :pay %>
     <%= form.text_field :pay %>
@@ -38,14 +40,10 @@
     <%= form.number_field :user_id,id: :delivery_user_id,value:current_user.id,type: :hidden%>
   </div>
 
+
   <div class="field">
-
-
-
   <%=form.label :picture%>
   <%=form.file_field :picture,accept:'image/png,image/jpg,image/jpeg'%>
-
-
   </div>
 
 

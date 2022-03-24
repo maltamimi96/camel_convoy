@@ -12,15 +12,14 @@
  
         
 
-<div class="card" style="width: 18rem;">
-   <%= image_tag delivery.picture if delivery.picture.attached?%>
-  <div class="card-body">
-    <h5 class="card-title"><%= delivery.title %></h5>
-    <p class="card-text"> <%= delivery.by %></p>
-    <p class="card-text"> <%= delivery.packages %></p>
-    <p class="card-text">$ <%= delivery.pay %></p>
-
-<td><%= link_to 'View Job', delivery %></td>
+  <div class="card" style="width: 18rem;">
+    <%= image_tag delivery.picture if delivery.picture.attached?%>
+    <div class="card-body">
+      <h5 class="card-title"><%= delivery.title %></h5>
+      <p class="card-text"> <%= delivery.by %></p>
+      <p class="card-text"> <%= delivery.packages %></p>
+      <p class="card-text">$ <%= delivery.pay %></p>
+    <td><%= link_to 'View Job', delivery %></td>
 
 
     <a href="#" class="btn btn-primary">Go somewhere</a>

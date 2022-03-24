@@ -1,7 +1,6 @@
 class DeliveriesController < ApplicationController
   before_action :set_delivery, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
-  before_action :verify_user, only:[:edit,:update,:destroy]
 
   # GET /deliveries or /deliveries.json
   def index
@@ -17,7 +16,8 @@ class DeliveriesController < ApplicationController
 
   # GET /deliveries/new
   def new
-    @delivery = current_user.delivery.build
+    @delivery = current_user.deliveries.build
+   #@delivery =Delivery.new
   end
 
   # GET /deliveries/1/edit
@@ -27,7 +27,7 @@ class DeliveriesController < ApplicationController
   # POST /deliveries or /deliveries.json
   def create
     #@delivery = Delivery.new(delivery_params)
-    @delivery = current_user.delivery.build(delivery_params)
+    @delivery = current_user.deliveries.build(delivery_params)
 
     respond_to do |format|
       if @delivery.save
@@ -64,11 +64,11 @@ class DeliveriesController < ApplicationController
   end
 
 
-  def verify_user
-    @delivery =  current_user.delivery.find_by(id: params[:id])
-    redirect_to delivery_path, notice: "not Authorised"  if @delivery.nil?
-  end
 
+def correct_user
+  @delivery = current_user.deliveries.find_by(id:params[:id])
+  redirect_to deliveries_path,notice:"not authorised"if @delivery.nil?
+end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_delivery
@@ -79,4 +79,8 @@ class DeliveriesController < ApplicationController
     def delivery_params
       params.require(:delivery).permit(:title,  :by, :packages, :pay,:user_id,:picture)
     end
+
+
+
+
 end

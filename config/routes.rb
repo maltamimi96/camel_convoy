@@ -7,4 +7,6 @@ root to: "main#index"
 
 get "delivery/view_deliveries", to: 'deliveries#view_all'
 
+get "orders",to: 'orders#add_order'
+
 end

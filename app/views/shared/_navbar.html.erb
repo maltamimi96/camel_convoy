@@ -21,14 +21,10 @@
             <li class="nav-item"><%= link_to "logout",destroy_user_session_path,method: :delete,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "edit account",edit_user_registration_path,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "I want Something Delivered",new_delivery_path,class:"nav-link"%></li>
-            <li class="nav-item"><%= link_to "View  Jobs",delivery_view_deliveries_path,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "My Jobs",deliveries_path,class:"nav-link"%></li>
+            <li class="nav-item"><%= link_to "View  Jobs",delivery_view_deliveries_path,class:"nav-link"%></li>
+            <li class="nav-item"><%= link_to current_user.id,delivery_view_deliveries_path,class:"nav-link"%></li>
 
-
-            
-            
-            
-            
         <%end%>
       
 
