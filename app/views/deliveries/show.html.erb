@@ -22,7 +22,12 @@
   <%= @delivery.pay %>
 </p>
 
-  <a href="#" class="btn btn-primary">Accept Delivery</a>
+<p>
+  <strong>Driver:</strong>
+  <%= @active_order%>
+</p>
+
+  <%= link_to 'Accept offer', delivery_path %>
 
 
 <%= link_to 'Edit', edit_delivery_path(@delivery) %> |

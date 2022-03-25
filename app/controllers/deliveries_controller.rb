@@ -8,7 +8,7 @@ class DeliveriesController < ApplicationController
   end
 
   # GET /deliveries/1 or /deliveries/1.json
-  def show
+  def show    
   end
   def view_all
     @deliveries = Delivery.all
@@ -27,7 +27,7 @@ class DeliveriesController < ApplicationController
   # POST /deliveries or /deliveries.json
   def create
     #@delivery = Delivery.new(delivery_params)
-    @delivery = current_user.deliveries.build(delivery_params)
+    @delivery = current_user.deliveries.new(delivery_params)
 
     respond_to do |format|
       if @delivery.save
@@ -65,20 +65,29 @@ class DeliveriesController < ApplicationController
 
 
 
+
 def correct_user
   @delivery = current_user.deliveries.find_by(id:params[:id])
   redirect_to deliveries_path,notice:"not authorised"if @delivery.nil?
 end
+
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_delivery
       @delivery = Delivery.find(params[:id])
+      
     end
 
     # Only allow a list of trusted parameters through.
     def delivery_params
       params.require(:delivery).permit(:title,  :by, :packages, :pay,:user_id,:picture)
     end
+
+    def delivery_status_params
+      params.require(:delivery_status).permit(:delivery_id,:driver_id)
+    end  
 
 
 

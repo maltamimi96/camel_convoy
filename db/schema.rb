@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_24_081620) do
+ActiveRecord::Schema.define(version: 2022_03_25_100050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 2022_03_24_081620) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["delivery_id"], name: "index_active_deliveries_on_delivery_id"
     t.index ["driver_id"], name: "index_active_deliveries_on_driver_id"
+  end
+
+  create_table "active_orders", force: :cascade do |t|
+    t.bigint "delivery_id", null: false
+    t.bigint "driver_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_active_orders_on_delivery_id"
+    t.index ["driver_id"], name: "index_active_orders_on_driver_id"
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -52,6 +61,12 @@ ActiveRecord::Schema.define(version: 2022_03_24_081620) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "title"
     t.string "deliver"
@@ -64,6 +79,15 @@ ActiveRecord::Schema.define(version: 2022_03_24_081620) do
     t.index ["user_id"], name: "index_deliveries_on_user_id"
   end
 
+  create_table "delivery_statuses", force: :cascade do |t|
+    t.bigint "delivery_id", null: false
+    t.bigint "driver_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_delivery_statuses_on_delivery_id"
+    t.index ["driver_id"], name: "index_delivery_statuses_on_driver_id"
+  end
+
   create_table "drivers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "vehicle_type"
@@ -71,6 +95,28 @@ ActiveRecord::Schema.define(version: 2022_03_24_081620) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_drivers_on_user_id"
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.integer "condition"
+    t.integer "category_id"
+    t.text "description"
+    t.boolean "sold"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "price"
+    t.index ["user_id"], name: "index_listings_on_user_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.bigint "delivery_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["delivery_id"], name: "index_orders_on_delivery_id"
+    t.index ["driver_id"], name: "index_orders_on_driver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,7 +145,14 @@ ActiveRecord::Schema.define(version: 2022_03_24_081620) do
 
   add_foreign_key "active_deliveries", "deliveries"
   add_foreign_key "active_deliveries", "drivers"
+  add_foreign_key "active_orders", "deliveries"
+  add_foreign_key "active_orders", "drivers"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "delivery_statuses", "deliveries"
+  add_foreign_key "delivery_statuses", "drivers"
   add_foreign_key "drivers", "users"
+  add_foreign_key "listings", "users"
+  add_foreign_key "orders", "deliveries"
+  add_foreign_key "orders", "drivers"
 end

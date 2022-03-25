@@ -1,9 +1,7 @@
 class Delivery < ApplicationRecord
     belongs_to :user
     has_one_attached :picture
-    has_one :delivery_driver
-    has_one :area
-    has_one :active_delivery
+    has_one :order
 
 
 validates_presence_of :title,:by,:packages,:pay

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'listings/show'
+  get 'listings/update'
+  get 'listings/create'
+  get 'listings/destroy'
+  resources :active_orders
   resources :drivers
   resources :deliveries
   devise_for :users
@@ -8,6 +13,8 @@ root to: "main#index"
 
 get "delivery/view_deliveries", to: 'deliveries#view_all'
 
-get "orders",to: 'orders#add_order'
+get "/listings", to: 'listings#index',as: "listings"
+
+
 
 end
