@@ -71,7 +71,20 @@ def correct_user
   redirect_to deliveries_path,notice:"not authorised"if @delivery.nil?
 end
 
+def add_active_order
 
+  @active_order = create.new(delivery_id:set_delivery,driver_id:current_user.id)
+
+
+  respond_to do |format|
+    if @active_order.save
+      format.html { redirect_to root_path, notice: "Delivery was successfully created." }
+    else
+      format.html { redirect_to root_path, notice: "unable to add order." }
+
+    end
+  end
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -82,12 +95,15 @@ end
 
     # Only allow a list of trusted parameters through.
     def delivery_params
-      params.require(:delivery).permit(:title,  :by, :packages, :pay,:user_id,:picture)
+      params.require(:delivery).permit(:title,  :by, :packages, :pay,:user_id,:picture,:description)
     end
 
     def delivery_status_params
       params.require(:delivery_status).permit(:delivery_id,:driver_id)
     end  
+
+
+    
 
 
 
