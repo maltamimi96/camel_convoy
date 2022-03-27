@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @Product.title %>
+</p>
+
+
+<p>
+  <strong>By:</strong>
+  <%= @Product.by %>
+</p>
+
+<p>
+  <strong>Packages:</strong>
+  <%= @Product.packages %>
+</p>
+
+<p>
+  <strong>Pay:</strong>
+  <%= @Product.pay %>
+</p>
+
+<p>
+  <strong>Driver:</strong>
+  <%= @active_order%>
+</p>
+
+
+
+
+<%= link_to 'Edit', edit_product_path(@Product) %> |

@@ -23,8 +23,9 @@
             <li class="nav-item"><%= link_to "My Jobs",deliveries_path,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "View  Jobs",delivery_view_deliveries_path,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "I want to Deliver",new_driver_path,class:"nav-link"%></li>
+            <li class="nav-item"><%= link_to "Post product",new_product_path,class:"nav-link"%></li>
             <li class="nav-item"><%= link_to "View  Shop",shop_path,class:"nav-link"%></li>
-            <li class="nav-item"><%= link_to current_user.id,delivery_view_deliveries_path,class:"nav-link"%></li>
+            <li class="nav-item"><%= link_to current_user.email,delivery_view_deliveries_path,class:"nav-link"%></li>
         <%end%>
       </ul>
     </div>
