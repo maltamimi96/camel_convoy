@@ -25,6 +25,10 @@ patch "listings/:id", to: "listings#update"
 delete "listings/:id", to: "listings#destroy", as: "delete_listing"
 get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
 
+
+
+post "products", to: "pages#create"
+get "product/new", to: "pages#new", as: "new_product"
 get "/shop", to: "pages#shop"
 
 end
