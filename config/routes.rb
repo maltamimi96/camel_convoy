@@ -23,5 +23,5 @@ delete "listings/:id", to: "listings#destroy", as: "delete_listing"
 get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
 
 get "/shop", to: "pages#shop"
-
+resources :cart
 end
