@@ -1,11 +1,10 @@
 <p id="notice"><%= notice %></p>
 <h2>Cart details</h2>
-<%@cart.product_items.each do |item|%>
+<%= render 'carts/cart'%>
+<br>
 
-<ul>
-<li>
-<%= item.quantity%> &times; <%= item.product.title%>
-
-</li>
-</ul>
-<%end%>
+<h5>
+Total: $<%@cart.total_price%>
+</h5>
+<%= link_to 'Return To Store',shop_path %> |
+<%= link_to 'Empty Cart', @cart, method: :delete,data: {confirm:"Are You sure??"} %>

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :deliveries
   devise_for :users
   devise_for :views
-  resources :cart
+  resources :carts
   resources :product_items
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
