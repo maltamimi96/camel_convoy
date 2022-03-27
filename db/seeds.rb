@@ -6,12 +6,3 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-categories = ["books","clothing","electronics","gardening","furniture"]
-
-if Category.count == 0
-    categories.each do |c|
-        Category.create(name: c)
-        puts "Added default Area #{c}"
-    end    
-
-end    

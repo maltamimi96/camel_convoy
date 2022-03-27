@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Shop</h1>
+
+<table>
+
+
+  <tbody>
+    <% @Products.each do |products| %>
+    
+      <tr>
+ 
+        
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%= products.title %></h5>
+      <p class="card-text">$ <%= products.price %></p>
+            <p class="card-text">$ <%= products.description %></p>
+
+
+
+
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+  </div>
+
+      </tr>
+
+</div>
+      
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :orders
   resources :orders
   get 'active_orders/create'
@@ -20,6 +22,6 @@ patch "listings/:id", to: "listings#update"
 delete "listings/:id", to: "listings#destroy", as: "delete_listing"
 get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
 
-
+get "/shop", to: "pages#shop"
 
 end
