@@ -1,27 +1,11 @@
 <p id="notice"><%= notice %></p>
+<h2>Cart details</h2>
+<%@cart.product_items.each do |item|%>
 
-<p>
-  <strong>Title:</strong>
-  <%= @delivery.title %>
-</p>
+<ul>
+<li>
+<%= item.quantity%> &times; <%= item.product.title%>
 
-
-<p>
-  <strong>By:</strong>
-  <%= @delivery.by %>
-</p>
-
-<p>
-  <strong>Packages:</strong>
-  <%= @delivery.packages %>
-</p>
-
-<p>
-  <strong>Pay:</strong>
-  <%= @delivery.pay %>
-</p>
-
-<p>
-  <strong>Driver:</strong>
-  <%= @active_order%>
-</p>
+</li>
+</ul>
+<%end%>

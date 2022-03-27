@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   resources :deliveries
   devise_for :users
   devise_for :views
+  resources :cart
+  resources :product_items
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 root to: "main#index"
 
@@ -23,5 +26,5 @@ delete "listings/:id", to: "listings#destroy", as: "delete_listing"
 get "listings/:id/edit", to: "listings#edit", as: "edit_listing"
 
 get "/shop", to: "pages#shop"
-resources :cart
+
 end
